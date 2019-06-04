@@ -1,0 +1,42 @@
+<div class="container" style="margin-bottom: 20px">
+  <div class="row d-flex justify-content-end">
+    <button class="btn btn-info " type="button" data-toggle="modal" data-target="#CategoryModal">Nova Categoria &nbsp;
+      <i class="fas fa-plus"></i></button>
+  </div>
+</div>
+
+<div>
+  <div class="d-flex justify-content-center lign-items-center">
+    <div class="spinner-border" [ngStyle]="{display: showSpinner ? 'block' : 'none'}" role="status">
+      <span class="sr-only">Loading...</span>
+    </div>
+  </div>
+  <div class="row">
+    <ng-container *ngIf="categories == null">
+      <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
+        <div class="alert alert-danger" role="alert">
+          Nenhuma categoria encontrada!
+        </div>
+      </div>
+    </ng-container>
+    <ng-container *ngFor="let category of categories">
+      <div class="col-md-4 col-lg-4 col-sm-12 col-xs-12" style="margin-bottom: 10px">
+        <div class="card">
+          <h5 class="card-header" style="display: flex; justify-content: space-between">{{ category.title }}
+            <button (click)="deleteCategory(category.id)" style="outline: 0" type="button" class="close">
+                <span style="cursor: pointer;" >&times;</span>
+            </button>
+          </h5>
+
+          <div class="card-body">
+            <p class="card-text">{{ category.description }}</p>
+            <a href="#" class="btn btn-primary">Ver produtos</a> &nbsp;
+            <a (click)="editar(category.id)" data-toggle="modal" data-target="#CategoryModal" class="btn btn-secondary" style="color: white">Editar</a>
+          </div>
+        </div>
+      </div>
+    </ng-container>
+  </div>
+</div>
+
+<app-create-category [categorySelecionada]="categorySelecionada"></app-create-category>
