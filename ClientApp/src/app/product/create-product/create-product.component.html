@@ -1,0 +1,82 @@
+<!-- Modal -->
+<div class="modal fade" id="ProductModal" tabindex="-1" role="dialog" data-backdrop="static" data-keyboard="false"
+  aria-labelledby="ProductModal" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Cadastro de produtos</h5>
+        <button style="outline: 0" type="button" class="close" #btnClick (click)="inicializarComponent()"
+          data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group">
+            <label for="title" style="font-weight: bold">Título</label>
+            <input type="text" class="form-control" required [(ngModel)]="product.title" name="product.title"
+              id="title" placeholder="Ex: Computador">
+          </div>
+          <div class="row">
+            <div class="col-md-6 col-lg-6 col-sm-6 col-xs-6">
+              <div class="form-group">
+                <label for="price" style="font-weight: bold">Preço</label>
+                <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">R$</span>
+                  </div>
+                  <input type="number" class="form-control" [(ngModel)]="product.price" name="product.price">
+                  <div class="input-group-append">
+                    <span class="input-group-text">,00</span>
+                  </div>
+                </div>
+              </div>              
+            </div>
+            <div class="col-md-6 col-lg-6 col-sm-6 col-xs-6">
+              <div class="form-group">
+                <label for="quantity" style="font-weight: bold">Quantidade</label>
+                <input type="number" class="form-control" [(ngModel)]="product.quantity" name="product.quantity">
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="category" style="font-weight: bold">Categoria</label>
+            <select class="form-control" [(ngModel)]="product.categoryId" name="product.categoryId">          
+              <option [value]="category.id" *ngFor="let category of categories"> {{ category.title }}</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="description" style="font-weight: bold">Descrição</label>
+            <textarea class="form-control" id="description" required [(ngModel)]="product.description" name="product.description"
+               rows="3"></textarea>
+          </div>
+        </form>
+      </div>
+      <div class="container">
+        <ng-container *ngIf="errors != undefined">
+          <p *ngFor="let erro of errors" style="color: red">
+            {{ erro.message }}
+          </p>
+        </ng-container>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" (click)="inicializarComponent()"
+          data-dismiss="modal">Cancelar</button>
+        <!-- <button *ngIf="categorySelecionada == undefined" type="button" class="btn btn-success" (click)="cadastrar()">Cadastrar</button> -->
+        <button  class="btn btn-success" type="button" [disabled]="cadastrando"
+          (click)="cadastrar()">
+          <span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true" [hidden]="!cadastrando"></span>
+          <label style="margin: 0" [hidden]="!cadastrando">&nbsp; Cadastrando...</label>
+          <label style="margin: 0" [hidden]="cadastrando">Cadastrar</label>
+        </button>
+        <!-- <button *ngIf="categorySelecionada"  type="button" class="btn btn-info" (click)="editar()">Editar</button> -->
+        <button  class="btn btn-info" type="button" [disabled]="cadastrando"
+          (click)="editar()">
+          <span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true" [hidden]="!cadastrando"></span>
+          <label style="margin: 0" [hidden]="!cadastrando">&nbsp; Editando...</label>
+          <label style="margin: 0" [hidden]="cadastrando">Editar</label>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

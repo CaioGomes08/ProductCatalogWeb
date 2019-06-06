@@ -14,6 +14,7 @@ import { HttpModule } from '@angular/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CategoryService } from './services/category.service';
 import { ProductComponent } from './product/product.component';
+import { CreateProductComponent } from './product/create-product/create-product.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { ProductComponent } from './product/product.component';
     HomeComponent,
     CategoryComponent,
     CreateCategoryComponent,
-    ProductComponent
+    ProductComponent,
+    CreateProductComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -38,7 +40,7 @@ import { ProductComponent } from './product/product.component';
     ])
   ],
   providers: [
-    CategoryService
+    CategoryService    
   ],
   bootstrap: [AppComponent]
 })
