@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 import { ToastrModule } from 'ngx-toastr';
+// import { ScrollingModule } from '@angular/cdk/scrolling'; 
 
 import { AppComponent } from './app.component';
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
@@ -15,6 +16,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CategoryService } from './services/category.service';
 import { ProductComponent } from './product/product.component';
 import { CreateProductComponent } from './product/create-product/create-product.component';
+import { ProductService } from './services/product.service';
 
 @NgModule({
   declarations: [
@@ -29,6 +31,7 @@ import { CreateProductComponent } from './product/create-product/create-product.
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
     HttpClientModule,
+    // ScrollingModule,
     BrowserAnimationsModule,
     ToastrModule.forRoot(),
     HttpModule,
@@ -40,7 +43,8 @@ import { CreateProductComponent } from './product/create-product/create-product.
     ])
   ],
   providers: [
-    CategoryService    
+    CategoryService,
+    ProductService   
   ],
   bootstrap: [AppComponent]
 })
