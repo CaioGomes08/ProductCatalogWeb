@@ -4,7 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 import { ToastrModule } from 'ngx-toastr';
-// import { ScrollingModule } from '@angular/cdk/scrolling'; 
+import { ScrollingModule } from '@angular/cdk/scrolling'; 
 
 import { AppComponent } from './app.component';
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
@@ -31,7 +31,7 @@ import { ProductService } from './services/product.service';
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
     HttpClientModule,
-    // ScrollingModule,
+    ScrollingModule,
     BrowserAnimationsModule,
     ToastrModule.forRoot(),
     HttpModule,
