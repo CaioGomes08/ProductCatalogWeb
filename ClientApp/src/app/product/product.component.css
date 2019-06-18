@@ -1,0 +1,13 @@
+.example-viewport {
+    height: 400px;
+    width: 100%;
+    /* border: 1px solid black; */
+  }
+   
+  .example-item {
+    padding: 25px;
+    background: #ccc;
+    margin-bottom: 2px;
+    /* text-align: center; */
+    font-size: 20px;
+  }

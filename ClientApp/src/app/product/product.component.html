@@ -5,5 +5,13 @@
   </div>
 </div>
 
+<div class="container">
+  <cdk-virtual-scroll-viewport class="example-viewport" itemSize="100">
+    <div *cdkVirtualFor="let n of produtos" class="example-item">
+      <b>Nome: </b> {{n.title}} &nbsp; <b>Preço: </b> {{ n.price | currency:'BRL'}}
+    </div>
+  </cdk-virtual-scroll-viewport>
+</div>
+
 
 <app-create-product></app-create-product>
