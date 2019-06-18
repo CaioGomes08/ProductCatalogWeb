@@ -12,18 +12,13 @@ import { AppComponent } from './app.component';
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
 import { HomeComponent } from './home/home.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { CategoryService } from './services/category.service';
-import { ProductComponent } from './product/product.component';
-import { CreateProductComponent } from './product/create-product/create-product.component';
-import { ProductService } from './services/product.service';
+
 
 @NgModule({
   declarations: [
     AppComponent,
     NavMenuComponent,
     HomeComponent, 
-    ProductComponent,
-    CreateProductComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -36,11 +31,11 @@ import { ProductService } from './services/product.service';
     RouterModule.forRoot([
       { path: '', component: HomeComponent, pathMatch: 'full' },
       { path: 'category', loadChildren: './category/category.module#CategoryModule' }, 
-      { path: 'product', component: ProductComponent}
+      { path: 'product', loadChildren: './product/product.module#ProductModule'}
     ])
   ],
   providers: [ 
-    ProductService   
+       
   ],
   bootstrap: [AppComponent]
 })
