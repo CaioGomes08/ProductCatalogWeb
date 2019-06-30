@@ -6,11 +6,25 @@
 </div>
 
 <div class="container">
-  <cdk-virtual-scroll-viewport class="example-viewport" itemSize="100">
-    <div *cdkVirtualFor="let n of produtos" class="example-item">
-      <b>Nome: </b> {{n.title}} &nbsp; <b>Preço: </b> {{ n.price | currency:'BRL'}}
+  <div class="d-flex justify-content-center lign-items-center">
+    <div class="spinner-border" [ngStyle]="{display: showSpinner ? 'block' : 'none'}" role="status">
+      <span class="sr-only">Loading...</span>
     </div>
-  </cdk-virtual-scroll-viewport>
+  </div>
+  <ng-container *ngIf="produtos == null">
+    <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
+      <div class="alert alert-danger" role="alert">
+        Nenhum produto encontrado!
+      </div>
+    </div>
+  </ng-container>
+  <ng-container>
+    <cdk-virtual-scroll-viewport class="example-viewport" itemSize="100">
+      <div *cdkVirtualFor="let n of produtos" class="example-item">
+        <b>Nome: </b> {{n.title}} &nbsp; <b>Preço: </b> {{ n.price | currency:'BRL'}}
+      </div>
+    </cdk-virtual-scroll-viewport>
+  </ng-container>
 </div>
 
 

@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ProductService } from '../services/product.service';
 import { Product } from '../model/product.model';
+import { HttpErrorResponse } from '@angular/common/http';
+import { finalize } from 'rxjs/operators';
 
 @Component({
   selector: 'app-product',
@@ -13,20 +15,25 @@ export class ProductComponent implements OnInit {
   scrollItems: number[] = [];
 
   produtos: Product[] = [];
+  showSpinner: boolean = false;
 
   ngOnInit() {
-    for (let index = 0; index < 10000; index++) {
-      this.scrollItems.push(index);
-    }
-
     this.getProducts();
   }
 
-  getProducts(){
+  getProducts() {
+    this.showSpinner = true;
     this.productService.getProducts()
-        .subscribe(res => {
-         this.produtos = res;
-        })
+      .pipe(finalize(() => this.showSpinner = false))
+      .subscribe(res => {
+        if (res && res.length > 0)
+          this.produtos = res;
+        else
+          this.produtos = null;
+      }, (error: HttpErrorResponse) => {
+        console.error(error);
+        this.produtos = null;
+      })
   }
 
 }
