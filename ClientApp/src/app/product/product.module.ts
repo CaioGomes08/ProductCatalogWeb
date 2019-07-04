@@ -7,6 +7,7 @@ import { ProductRoutingModule } from './product-routing.module';
 import { ProductService } from '../services/product.service';
 import { ProductComponent } from './product.component';
 import { CreateProductComponent } from './create-product/create-product.component';
+import { SpinnerComponent } from '../components/spinner/spinner.component';
 
 @NgModule({
   imports: [
@@ -17,7 +18,8 @@ import { CreateProductComponent } from './create-product/create-product.componen
   ],
   declarations: [
     ProductComponent,
-    CreateProductComponent
+    CreateProductComponent,
+    SpinnerComponent
   ],
   providers:[
     ProductService
