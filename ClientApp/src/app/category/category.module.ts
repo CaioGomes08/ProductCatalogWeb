@@ -6,18 +6,20 @@ import { CategoryRoutingModule } from './category-routing.module';
 import { CategoryComponent } from './category.component';
 import { CreateCategoryComponent } from './create-category/create-category.component';
 import { CategoryService } from '../services/category.service';
-import { SpinnerComponent } from '../components/spinner/spinner.component';
+
+import { ComponentsModule } from '../components/components.module';
 
 @NgModule({
   imports: [
     CommonModule,
     CategoryRoutingModule,
-    FormsModule
+    FormsModule,
+    ComponentsModule
   ],
   declarations: [
     CategoryComponent,
     CreateCategoryComponent,
-    SpinnerComponent
+    
   ],
   providers: [
     CategoryService
