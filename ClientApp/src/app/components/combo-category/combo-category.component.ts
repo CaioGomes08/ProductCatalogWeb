@@ -11,11 +11,12 @@ import { Category } from 'src/app/model/category.model';
     CategoryService
   ]
 })
+
 export class ComboCategoryComponent implements OnInit {
-
+  
   constructor(private categoryService: CategoryService) { }
-
-  identifier: number = 0;
+    
+  public identifier = `combo-category-${identifier++}`;
 
   @Input() value: any;
 
@@ -24,7 +25,8 @@ export class ComboCategoryComponent implements OnInit {
   categories: Category[] = [];
 
   ngOnInit() {
-    this.identifier = 0;
+    
+    this.getCategories();
   }
 
   getCategories(){
@@ -36,6 +38,9 @@ export class ComboCategoryComponent implements OnInit {
 
   alterouCategoria(event){
     this.aoAlterarCategoria.emit(event);
-  }
+  }  
 
 }
+
+let identifier = 0;
+

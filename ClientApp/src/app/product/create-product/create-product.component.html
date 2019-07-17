@@ -40,10 +40,13 @@
             </div>
           </div>
           <div class="form-group">
-            <label for="category" style="font-weight: bold">Categoria</label>
+            <!-- <label for="category" style="font-weight: bold">Categoria</label>
             <select class="form-control" [(ngModel)]="product.categoryId" name="product.categoryId">          
               <option [value]="category.id" *ngFor="let category of categories"> {{ category.title }}</option>
-            </select>
+            </select> -->
+            <app-combo-category [value]="product.categoryId"></app-combo-category>
+            <app-combo-category [value]="product.categoryId"></app-combo-category>
+            
           </div>
           <div class="form-group">
             <label for="description" style="font-weight: bold">Descrição</label>
