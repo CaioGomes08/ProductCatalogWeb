@@ -1,4 +1,4 @@
-import { Component, OnInit, OnChanges } from '@angular/core';
+import { Component, OnInit, OnChanges, ViewChild, ElementRef } from '@angular/core';
 
 import { Product } from 'src/app/model/product.model';
 import { Category } from 'src/app/model/category.model';
@@ -23,6 +23,8 @@ export class CreateProductComponent implements OnInit {
   errors: object;
   cadastrando: boolean = false;
 
+  @ViewChild('btnClick') btnClick: ElementRef;
+
   ngOnInit() {
     this.getCategories();
   }
@@ -38,12 +40,15 @@ export class CreateProductComponent implements OnInit {
         });
   }
   
+  selecionouCategoria(event){
+    this.product.categoryId = event;
+  }
   inicializarComponent(){  
     this.product = new Product();
     this.errors = undefined;
   }
 
-  cadastrar(){
+  cadastrar(){  
     this.productService.createProduct(this.product)
         .subscribe((result) => {
           if(result.success){
@@ -65,10 +70,14 @@ export class CreateProductComponent implements OnInit {
             });
           }
         })
+    this.closeModal();
   }
 
   editar(){
     
   }
   
+  closeModal(){
+    this.btnClick.nativeElement.click();
+  }
 }

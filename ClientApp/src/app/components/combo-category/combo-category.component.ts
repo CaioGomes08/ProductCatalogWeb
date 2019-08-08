@@ -36,7 +36,7 @@ export class ComboCategoryComponent implements OnInit {
         });
   }
 
-  alterouCategoria(event){
+  alterouCategoria(event){    
     this.aoAlterarCategoria.emit(event);
   }  
 
