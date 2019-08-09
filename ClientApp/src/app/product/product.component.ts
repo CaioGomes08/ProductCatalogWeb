@@ -26,8 +26,9 @@ export class ProductComponent implements OnInit {
     this.productService.getProducts()
       .pipe(finalize(() => this.showSpinner = false))
       .subscribe(res => {
+        console.log(res)
         if (res && res.length > 0)
-          this.produtos = res;
+          this.produtos = res;        
         else
           this.produtos = null;
       }, (error: HttpErrorResponse) => {

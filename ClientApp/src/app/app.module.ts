@@ -5,7 +5,9 @@ import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 import { HttpModule } from '@angular/http';
 import { ScrollingModule } from '@angular/cdk/scrolling'; 
-
+import { DataViewModule } from 'primeng/dataview';
+import { PanelModule } from 'primeng/panel';
+import { InputTextModule } from 'primeng/inputtext';
 
 import { ToastrModule } from 'ngx-toastr';
 import { AppComponent } from './app.component';
@@ -32,6 +34,9 @@ import { ComponentsModule } from './components/components.module';
     ToastrModule.forRoot(),
     HttpModule,
     FormsModule,
+    DataViewModule,
+    PanelModule,
+    InputTextModule,
     RouterModule.forRoot([
       { path: '', component: HomeComponent, pathMatch: 'full' },
       { path: 'category', loadChildren: './category/category.module#CategoryModule' }, 
@@ -41,6 +46,9 @@ import { ComponentsModule } from './components/components.module';
   providers: [ 
        
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  exports:[
+    DataViewModule
+  ]
 })
 export class AppModule { }

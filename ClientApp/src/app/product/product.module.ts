@@ -2,6 +2,9 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { ScrollingModule } from '@angular/cdk/scrolling'; 
+import { DataViewModule } from 'primeng/dataview';
+import { PanelModule } from 'primeng/panel';
+import { InputTextModule } from 'primeng/inputtext';
 
 import { ProductRoutingModule } from './product-routing.module';
 import { ProductService } from '../services/product.service';
@@ -16,8 +19,12 @@ import { ComponentsModule } from '../components/components.module';
     ProductRoutingModule,
     FormsModule,
     ScrollingModule,
-    ComponentsModule
+    ComponentsModule,
+    DataViewModule,
+    PanelModule,
+    InputTextModule
   ],
+
   declarations: [
     ProductComponent,
     CreateProductComponent,
