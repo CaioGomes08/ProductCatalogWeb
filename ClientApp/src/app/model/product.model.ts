@@ -5,4 +5,5 @@ export class Product{
     public price: number;
     public quantity: number;
     public categoryId: number;
+    public image: any;
 }
