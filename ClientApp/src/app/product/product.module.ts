@@ -5,6 +5,7 @@ import { ScrollingModule } from '@angular/cdk/scrolling';
 import { DataViewModule } from 'primeng/dataview';
 import { PanelModule } from 'primeng/panel';
 import { InputTextModule } from 'primeng/inputtext';
+import { ButtonModule } from 'primeng/button';
 
 import { ProductRoutingModule } from './product-routing.module';
 import { ProductService } from '../services/product.service';
@@ -22,7 +23,8 @@ import { ComponentsModule } from '../components/components.module';
     ComponentsModule,
     DataViewModule,
     PanelModule,
-    InputTextModule
+    InputTextModule,
+    ButtonModule
   ],
 
   declarations: [

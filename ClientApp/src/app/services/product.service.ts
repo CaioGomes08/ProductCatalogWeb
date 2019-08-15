@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { ResultViewModel } from '../model/resultViewModel.model';
 import { environment } from 'src/environments/environment';
 import { map } from 'rxjs/operators';
-import { Product } from '../model/product.model';
+import { Product, ProductViewModel } from '../model/product.model';
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +15,7 @@ export class ProductService {
 
   cadastrou: EventEmitter<boolean> = new EventEmitter<boolean>();
 
-  public getProducts(): Observable<Product[]>{
+  public getProducts(): Observable<ProductViewModel[]>{
     return this.http.get(`${environment.storeApi}/product`)
                .pipe(
                  map(response => {
