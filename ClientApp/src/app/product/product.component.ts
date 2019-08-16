@@ -14,7 +14,7 @@ import { finalize } from 'rxjs/operators';
 export class ProductComponent implements OnInit {
 
   constructor(private productService: ProductService,
-              private sanitizer: DomSanitizer) { }
+    private sanitizer: DomSanitizer) { }
   scrollItems: number[] = [];
 
   produtos: ProductViewModel[] = [];
@@ -29,17 +29,8 @@ export class ProductComponent implements OnInit {
     this.showSpinner = true;
     this.productService.getProducts()
       .pipe(finalize(() => this.showSpinner = false))
-      .subscribe(res => {     
-        res.forEach(value => {
-          this.produto.category = value.category;
-          this.produto.description = value.description;
-          this.produto.id = value.id;
-          this.produto.image = this.sanitizer.bypassSecurityTrustResourceUrl('data:image/*;base64,' + value.image);
-          this.produto.price = value.price;
-          this.produto.title = value.title;
-          this.produtos.push(this.produto);
-          this.produto = new ProductViewModel();
-        })        
+      .subscribe(res => {
+        this.produtos = res;
       }, (error: HttpErrorResponse) => {
         console.error(error);
         this.produtos = null;

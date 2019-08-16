@@ -15,21 +15,21 @@ export class ProductService {
 
   cadastrou: EventEmitter<boolean> = new EventEmitter<boolean>();
 
-  public getProducts(): Observable<ProductViewModel[]>{
+  public getProducts(): Observable<ProductViewModel[]> {
     return this.http.get(`${environment.storeApi}/product`)
-               .pipe(
-                 map(response => {
-                   return response.json();
-                 })
-               )
+      .pipe(
+        map(response => {
+          return ProductViewModel.CreateObjectFromJson(response.json())
+        })
+      )
   }
 
-  public createProduct(product: Product): Observable<ResultViewModel>{
+  public createProduct(product: Product): Observable<ResultViewModel> {
     return this.http.post(`${environment.storeApi}/product`, product)
-               .pipe(
-                 map(response => {
-                   return response.json();
-                 })
-               )
+      .pipe(
+        map(response => {
+          return response.json();
+        })
+      )
   }
 }

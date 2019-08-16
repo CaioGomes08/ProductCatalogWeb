@@ -19,12 +19,12 @@
       <p-header>
         <div class="ui-helper-clearfix">
           <div class="ui-g">
-            <div class="ui-g-6 ui-md-6 filter-container">
+            <div class="ui-g-12 ui-md-6 filter-container">
               <div style="position:relative">
                 <input type="search" pInputText placeholder="Search by title" (keyup)="dv.filter($event.target.value)">
               </div>
             </div>
-            <div class="ui-g-6 ui-md-6" style="text-align:right">
+            <div class="ui-g-12 ui-md-6" style="text-align:right">
               <p-dataViewLayoutOptions></p-dataViewLayoutOptions>
             </div>
           </div>
@@ -33,7 +33,7 @@
       <ng-template let-prod pTemplate="listItem">
         <div class="ui-g" style="padding: 2em;border-bottom: 1px solid #d9d9d9">
           <div class="ui-g-12 ui-md-3" style="text-align:center">
-            <img style="width: 150px; height: 100px;" [src]="prod.image">
+            <img style="width: 150px; height: 100px;" [src]="prod.image | sanatize">
           </div>
           <div class="ui-g-12 ui-md-8 car-details">
             <div class="ui-g">
@@ -55,7 +55,7 @@
       <ng-template let-prod pTemplate="gridItem">
         <div style="padding:.5em" class="ui-g-12 ui-md-3">
           <p-panel [header]="prod.title" [style]="{'text-align':'center'}">
-            <img [src]="prod.image" width="60">
+            <img [src]="prod.image | sanatize" width="60">
             <div>{{ prod.category }} - {{ prod.price | currency:'BRL' }}</div>
             <button pButton type="button" icon="pi pi-search" style="margin-top:10px"></button>
             <hr class="ui-widget-content" style="border-top:0">

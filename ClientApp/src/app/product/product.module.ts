@@ -13,6 +13,9 @@ import { ProductComponent } from './product.component';
 import { CreateProductComponent } from './create-product/create-product.component';
 
 import { ComponentsModule } from '../components/components.module';
+import { PipeModule } from '../pipes/pipe.module';
+
+
 
 @NgModule({
   imports: [
@@ -24,13 +27,14 @@ import { ComponentsModule } from '../components/components.module';
     DataViewModule,
     PanelModule,
     InputTextModule,
-    ButtonModule
+    ButtonModule,
+    PipeModule
   ],
 
   declarations: [
     ProductComponent,
     CreateProductComponent,
-    
+
   ],
   providers:[
     ProductService

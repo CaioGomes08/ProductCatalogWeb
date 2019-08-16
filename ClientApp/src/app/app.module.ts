@@ -5,6 +5,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 import { HttpModule } from '@angular/http';
 import { ScrollingModule } from '@angular/cdk/scrolling'; 
+
 import { DataViewModule } from 'primeng/dataview';
 import { PanelModule } from 'primeng/panel';
 import { InputTextModule } from 'primeng/inputtext';
@@ -15,6 +16,8 @@ import { NavMenuComponent } from './nav-menu/nav-menu.component';
 import { HomeComponent } from './home/home.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ComponentsModule } from './components/components.module';
+import { PipeModule } from './pipes/pipe.module';
+
 
 
 
@@ -23,7 +26,6 @@ import { ComponentsModule } from './components/components.module';
     AppComponent,
     NavMenuComponent,
     HomeComponent,
-
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -37,6 +39,7 @@ import { ComponentsModule } from './components/components.module';
     DataViewModule,
     PanelModule,
     InputTextModule,
+    PipeModule,
     RouterModule.forRoot([
       { path: '', component: HomeComponent, pathMatch: 'full' },
       { path: 'category', loadChildren: './category/category.module#CategoryModule' }, 
@@ -48,7 +51,8 @@ import { ComponentsModule } from './components/components.module';
   ],
   bootstrap: [AppComponent],
   exports:[
-    DataViewModule
+    DataViewModule,
+    PipeModule
   ]
 })
 export class AppModule { }
