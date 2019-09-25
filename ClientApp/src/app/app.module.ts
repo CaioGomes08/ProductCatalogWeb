@@ -3,8 +3,8 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
+import { ScrollingModule } from '@angular/cdk/scrolling';
 import { HttpModule } from '@angular/http';
-import { ScrollingModule } from '@angular/cdk/scrolling'; 
 
 import { DataViewModule } from 'primeng/dataview';
 import { PanelModule } from 'primeng/panel';
@@ -42,15 +42,14 @@ import { PipeModule } from './pipes/pipe.module';
     PipeModule,
     RouterModule.forRoot([
       { path: '', component: HomeComponent, pathMatch: 'full' },
-      { path: 'category', loadChildren: './category/category.module#CategoryModule' }, 
-      { path: 'product', loadChildren: './product/product.module#ProductModule'}
+      { path: 'category', loadChildren: './category/category.module#CategoryModule' },
+      { path: 'product', loadChildren: './product/product.module#ProductModule'},
+      { path: 'user', loadChildren: './user/user.module#UserModule'}
     ])
   ],
-  providers: [ 
-       
-  ],
+  providers: [],
   bootstrap: [AppComponent],
-  exports:[
+  exports: [
     DataViewModule,
     PipeModule
   ]
