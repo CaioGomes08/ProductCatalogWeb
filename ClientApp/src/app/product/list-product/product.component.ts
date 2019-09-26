@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { HttpErrorResponse } from '@angular/common/http';
 
-import { ProductService } from '../services/product.service';
-import { Product, ProductViewModel } from '../model/product.model';
+import { ProductService } from '../../../services/product.service';
+import { Product, ProductViewModel } from '../../../model/product.model';
 import { finalize } from 'rxjs/operators';
 
 @Component({
@@ -18,11 +18,18 @@ export class ProductComponent implements OnInit {
   scrollItems: number[] = [];
 
   produtos: ProductViewModel[] = [];
-  produto: ProductViewModel = new ProductViewModel();
-  showSpinner: boolean = false;
+  produtoSelecionado: Product = new Product();
+
+  showSpinner = false;
 
   ngOnInit() {
     this.getProducts();
+    this.productService.cadastrou
+      .subscribe(res => {
+        if (res) {
+          this.getProducts();
+        }
+      });
   }
 
   getProducts() {
@@ -34,7 +41,17 @@ export class ProductComponent implements OnInit {
       }, (error: HttpErrorResponse) => {
         console.error(error);
         this.produtos = null;
-      })
+      });
+  }
+
+  editar(id: number) {
+    this.productService.getProductById(id)
+        .subscribe(result => {
+          if (result) {
+            this.produtoSelecionado = result;
+            console.log(this.produtoSelecionado);
+          }
+        });
   }
 
 }

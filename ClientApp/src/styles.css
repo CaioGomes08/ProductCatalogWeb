@@ -191,3 +191,12 @@
       width: 25em;
     }
   }
+
+
+  /*
+   * PRIMENG DATA VIEW
+  */
+
+  body .ui-selectbutton .ui-button:last-child{
+    outline: 0;
+  }

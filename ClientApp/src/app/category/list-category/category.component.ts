@@ -1,8 +1,8 @@
 import { Component, OnInit, OnChanges } from '@angular/core';
-import { CategoryService } from '../services/category.service';
+import { CategoryService } from '../../../services/category.service';
 import { finalize } from 'rxjs/operators';
 
-import { Category } from '../model/category.model';
+import { Category } from '../../../model/category.model';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -17,22 +17,23 @@ export class CategoryComponent implements OnInit {
 
   categories: Category[] = [];
   categorySelecionada: Category;
-  showSpinner: boolean = false;
+  showSpinner = false;
 
   ngOnInit() {
     this.buscarCategorias();
     this.categoryService.cadastrou
       .subscribe(novo => {
-        if (novo)
+        if (novo) {
           this.buscarCategorias();
-      })
+        }
+      });
   }
 
   deleteCategory(id: number) {
 
     Swal.fire({
       title: 'Tem certeza?',
-      text: "Você irá remover essa categoria",
+      text: 'Você irá remover essa categoria',
       type: 'warning',
       showCancelButton: true,
       cancelButtonText: 'Cancelar',
@@ -42,41 +43,43 @@ export class CategoryComponent implements OnInit {
     }).then((result) => {
       if (result.value) {
         this.categoryService.deleteCategory(id)
-          .subscribe(result => {
-            if (result.success) {
-              console.log(result.message);
+          .subscribe(res => {
+            if (res.success) {
+              console.log(res.message);
               Swal.fire(
                 'Excluido!',
-                result.message,
+                res.message,
                 'success'
-              )
+              );
               this.buscarCategorias();
             }
-          })
+          });
       }
-    })
+    });
   }
 
   editar(id: number) {
     this.categoryService.getCategoryById(id)
       .subscribe(result => {
-        if (result)
+        if (result) {
           this.categorySelecionada = result;
-      })
+        }
+      });
   }
 
   buscarCategorias() {
     this.showSpinner = true;
     this.categoryService.getCategories()
-      .pipe(finalize(() => { this.showSpinner = false }))
+      .pipe(finalize(() => { this.showSpinner = false; }))
       .subscribe(result => {
-        if (result && result.length > 0)
+        if (result && result.length > 0) {
           this.categories = result;
-        else
-          this.categories = null
+        } else {
+          this.categories = null;
+        }
       }, error => {
-        this.categories = null
-      })
+        this.categories = null;
+      });
   }
 
 }

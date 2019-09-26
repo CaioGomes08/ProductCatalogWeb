@@ -1,7 +1,7 @@
 import { Component, OnInit, ElementRef, ViewChild, Output, EventEmitter, Input, OnChanges } from '@angular/core';
 import Swal from 'sweetalert2';
-import { Category } from 'src/app/model/category.model';
-import { CategoryService } from 'src/app/services/category.service';
+import { Category } from 'src/model/category.model';
+import { CategoryService } from 'src/services/category.service';
 import { ToastrService } from 'ngx-toastr';
 import { finalize } from 'rxjs/operators';
 
@@ -22,7 +22,7 @@ export class CreateCategoryComponent implements OnInit, OnChanges {
 
   category: Category = new Category();
   errors: object;
-  cadastrando: boolean = false;
+  cadastrando = false;
 
   @Input() categorySelecionada: Category = new Category();
 
@@ -41,7 +41,7 @@ export class CreateCategoryComponent implements OnInit, OnChanges {
     if (this.categorySelecionada) {
       this.category.id = this.categorySelecionada.id;
       this.category.title = this.categorySelecionada.title;
-      this.category.description = this.categorySelecionada.description
+      this.category.description = this.categorySelecionada.description;
     }
   }
 
@@ -70,10 +70,10 @@ export class CreateCategoryComponent implements OnInit, OnChanges {
           })
         } else {
           this.errors = result.data;
-          this.toastrService.error(result.message, "Erro", {
+          this.toastrService.error(result.message, 'Erro', {
             progressBar: true,
             timeOut: 3000
-          })
+          });
         }
 
       })

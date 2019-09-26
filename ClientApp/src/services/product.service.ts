@@ -19,9 +19,18 @@ export class ProductService {
     return this.http.get(`${environment.storeApi}/product`)
       .pipe(
         map(response => {
-          return ProductViewModel.CreateObjectFromJson(response.json())
+          return ProductViewModel.CreateObjectFromJson(response.json());
         })
-      )
+      );
+  }
+
+  public getProductById(id: number): Observable<Product> {
+    return this.http.get(`${environment.storeApi}/product/${id}`)
+      .pipe(
+        map(response => {
+          return response.json();
+        })
+      );
   }
 
   public createProduct(product: Product): Observable<ResultViewModel> {
@@ -30,6 +39,6 @@ export class ProductService {
         map(response => {
           return response.json();
         })
-      )
+      );
   }
 }

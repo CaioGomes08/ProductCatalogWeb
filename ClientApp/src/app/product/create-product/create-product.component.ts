@@ -1,10 +1,10 @@
-import { Component, OnInit, OnChanges, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, OnChanges, ViewChild, ElementRef, Input } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 
-import { Product } from 'src/app/model/product.model';
-import { Category } from 'src/app/model/category.model';
-import { CategoryService } from 'src/app/services/category.service';
-import { ProductService } from 'src/app/services/product.service';
+import { Product } from 'src/model/product.model';
+import { Category } from 'src/model/category.model';
+import { CategoryService } from 'src/services/category.service';
+import { ProductService } from 'src/services/product.service';
 import Swal from 'sweetalert2';
 
 
@@ -13,74 +13,87 @@ import Swal from 'sweetalert2';
   templateUrl: './create-product.component.html',
   styleUrls: ['./create-product.component.css']
 })
-export class CreateProductComponent implements OnInit {
+export class CreateProductComponent implements OnInit, OnChanges {
 
 
-  constructor(private categoryService: CategoryService,
+
+  constructor(
+    private categoryService: CategoryService,
     private productService: ProductService,
     private sanitizer: DomSanitizer) { }
 
   product: Product = new Product();
   categories: Category[] = [];
   errors: object;
-  cadastrando: boolean = false;
+  cadastrando = false;
+
+  @Input() produtoSelecionado: Product;
 
   imagemSelecionada: any;
 
   @ViewChild('btnClick') btnClick: ElementRef;
+  @ViewChild('inputFile') inputFile: ElementRef;
 
   ngOnInit() {
-    this.getCategories();
+
   }
 
-  // ngOnChanges(){
-  //   this.getCategories();
-  // }
-
-  getCategories() {
-    this.categoryService.getCategories()
-      .subscribe((result) => {
-        this.categories = result;
-      });
+  ngOnChanges() {
+    this.editarProduct();
   }
+
+  editarProduct() {
+
+    if (this.produtoSelecionado) {
+      this.categoryService.getCategoryById(this.produtoSelecionado.categoryId)
+        .subscribe(res => {
+          if (res) {
+            this.product.categoryId = res.id;
+          }
+        });
+      this.imagemSelecionada = this.sanitizer.bypassSecurityTrustResourceUrl('data:image/*;base64,' + this.produtoSelecionado.image);
+      this.product = this.produtoSelecionado;
+    }
+  }
+
 
   selecionouCategoria(event) {
     this.product.categoryId = event;
   }
 
   selecionouImagem(event) {
-   
+
     if (event.target.files[0]) {
-      let file = event.target.files[0]
+      const file = event.target.files[0];
 
       if (file != null) {
-        let reader = new FileReader();
+        const reader = new FileReader();
         reader.onload = (r: any) => {
           this.product.image = btoa(r.target.result);
-        }
+        };
         reader.readAsBinaryString(file);
 
         reader.onloadend = () => {
-          this.imagemSelecionada = this.sanitizer.bypassSecurityTrustResourceUrl('data:image/*;base64,' + this.product.image)
-        }
+          this.imagemSelecionada = this.sanitizer.bypassSecurityTrustResourceUrl('data:image/*;base64,' + this.product.image);
+        };
       }
     } else {
-      this.imagemSelecionada = null
+      this.imagemSelecionada = null;
     }
-
-
-
   }
 
   inicializarComponent() {
+    this.produtoSelecionado = null;
     this.product = new Product();
     this.errors = undefined;
+    this.inputFile.nativeElement.value = '';
   }
 
   cadastrar() {
     this.productService.createProduct(this.product)
       .subscribe((result) => {
         if (result.success) {
+          this.productService.cadastrou.emit(true);
           Swal.fire({
             type: 'success',
             title: 'Sucesso',
@@ -98,7 +111,7 @@ export class CreateProductComponent implements OnInit {
             timer: 1500
           });
         }
-      })
+      });
     this.closeModal();
   }
 

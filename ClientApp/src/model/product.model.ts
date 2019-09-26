@@ -16,12 +16,12 @@ export class ProductViewModel {
     public quantity: number;
     public category: string;
     public image: any;
-    
-    public static CreateObjectFromJson(json) {                       
-        if (json.length > 0) {            
-            var produtos = [];
-            json.forEach(element => {                
-                let produto = new ProductViewModel();
+
+    public static CreateObjectFromJson(json) {
+        const produtos = [];
+        if (json.length > 0) {
+            json.forEach(element => {
+                const produto = new ProductViewModel();
                     produto.category = element.category;
                     produto.description = element.description;
                     produto.id = element.id;
@@ -29,7 +29,7 @@ export class ProductViewModel {
                     produto.price = element.price;
                     produto.title = element.title;
                     produtos.push(produto);
-            });                            
+            });
         }
         return produtos;
     }

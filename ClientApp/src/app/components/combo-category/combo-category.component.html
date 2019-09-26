@@ -1,6 +1,6 @@
 <div class="form-group">
   <label for="category" style="font-weight: bold">Categoria</label>
-  <select class="form-control" [id]="identifier" [(ngModel)]="value" (change)="alterouCategoria($event.target.value)" name="category">          
+  <select class="form-control" [id]="identifier" [(ngModel)]="value" (change)="alterouCategoria($event.target.value)" >          
     <option [value]="category.id" *ngFor="let category of categories"> {{ category.title }}</option>
   </select>
 </div>

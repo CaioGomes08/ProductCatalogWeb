@@ -40,7 +40,7 @@
             </div>
           </div>
           <div class="form-group">                
-            <app-combo-category (aoAlterarCategoria)="selecionouCategoria($event)"></app-combo-category>            
+            <app-combo-category (aoAlterarCategoria)="selecionouCategoria($event)" [value]="product.categoryId"></app-combo-category>            
           </div>
           <div class="form-group">
             <label for="description" style="font-weight: bold">Descrição</label>
@@ -49,7 +49,7 @@
           </div>
           <div class="form-group">
             <label for="exampleFormControlFile1" style="font-weight: bold">Imagem</label>
-            <input type="file" class="form-control-file" accept="image/*" (change)="selecionouImagem($event)">
+            <input type="file" #inputFile class="form-control-file" accept="image/*" (change)="selecionouImagem($event)">
             <img  *ngIf="imagemSelecionada" [src]="imagemSelecionada" alt="Imagem do produto">
           </div>
         </form>
@@ -64,14 +64,14 @@
       <div class="modal-footer">
         <button type="button" class="btn btn-danger" (click)="inicializarComponent()"
           data-dismiss="modal">Cancelar</button>
-        <!-- <button *ngIf="categorySelecionada == undefined" type="button" class="btn btn-success" (click)="cadastrar()">Cadastrar</button> -->
+       
         <button  class="btn btn-success" type="button" [disabled]="cadastrando"
           (click)="cadastrar()">
           <span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true" [hidden]="!cadastrando"></span>
           <label style="margin: 0" [hidden]="!cadastrando">&nbsp; Cadastrando...</label>
           <label style="margin: 0" [hidden]="cadastrando">Cadastrar</label>
         </button>
-        <!-- <button *ngIf="categorySelecionada"  type="button" class="btn btn-info" (click)="editar()">Editar</button> -->
+        
         <button  class="btn btn-info" type="button" [disabled]="cadastrando"
           (click)="editar()">
           <span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true" [hidden]="!cadastrando"></span>

@@ -16,7 +16,7 @@ import { NavMenuComponent } from './nav-menu/nav-menu.component';
 import { HomeComponent } from './home/home.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ComponentsModule } from './components/components.module';
-import { PipeModule } from './pipes/pipe.module';
+import { PipeModule } from '../pipes/pipe.module';
 
 
 

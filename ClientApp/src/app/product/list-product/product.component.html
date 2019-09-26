@@ -15,13 +15,14 @@
     </div>
   </ng-container>
   <ng-container *ngIf="produtos != null && !showSpinner">
-    <p-dataView #dv [value]="produtos" [paginator]="true" [rows]="5" filterBy="title">
+    <p-dataView #dv [value]="produtos" emptyMessage="Nenhum produto encontrado !" [paginator]="true" [rows]="5"
+      filterBy="title">
       <p-header>
         <div class="ui-helper-clearfix">
           <div class="ui-g">
             <div class="ui-g-12 ui-md-6 filter-container">
               <div style="position:relative">
-                <input type="search" pInputText placeholder="Search by title" (keyup)="dv.filter($event.target.value)">
+                <input type="text" pInputText placeholder="Pesquisar" (keyup)="dv.filter($event.target.value)">
               </div>
             </div>
             <div class="ui-g-12 ui-md-6" style="text-align:right">
@@ -44,11 +45,11 @@
               <div class="ui-g-10 ui-sm-6"><b>{{ prod.category }}</b></div>
 
               <div class="ui-g-2 ui-sm-6">Preço: </div>
-              <div class="ui-g-10 ui-sm-6"><b>{{ prod.price | currency:'BRL' }}</b></div>             
+              <div class="ui-g-10 ui-sm-6"><b>{{ prod.price | currency:'BRL' }}</b></div>
             </div>
           </div>
           <div class="ui-g-12 ui-md-1 search-icon">
-            <button pButton type="button" icon="pi pi-search" ></button>
+            <button pButton type="button" icon="pi pi-search" data-toggle="modal" data-target="#ProductModal" (click)="editar(prod.id)"></button>
           </div>
         </div>
       </ng-template>
@@ -67,4 +68,4 @@
 </div>
 
 
-<app-create-product></app-create-product>
+<app-create-product [produtoSelecionado]="produtoSelecionado"></app-create-product>
