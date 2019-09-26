@@ -29,13 +29,13 @@ export class CreateProductComponent implements OnInit, OnChanges {
 
   @Input() produtoSelecionado: Product;
 
-  imagemSelecionada: any;
+  imagemSelecionada: any = null;
 
   @ViewChild('btnClick') btnClick: ElementRef;
   @ViewChild('inputFile') inputFile: ElementRef;
 
   ngOnInit() {
-
+    this.produtoSelecionado = undefined;
   }
 
   ngOnChanges() {
@@ -43,8 +43,8 @@ export class CreateProductComponent implements OnInit, OnChanges {
   }
 
   editarProduct() {
-
-    if (this.produtoSelecionado) {
+    if (this.produtoSelecionado.id) {
+      console.log('entrou no if')
       this.categoryService.getCategoryById(this.produtoSelecionado.categoryId)
         .subscribe(res => {
           if (res) {
@@ -83,6 +83,7 @@ export class CreateProductComponent implements OnInit, OnChanges {
   }
 
   inicializarComponent() {
+    this.imagemSelecionada = null;
     this.produtoSelecionado = null;
     this.product = new Product();
     this.errors = undefined;
