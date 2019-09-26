@@ -44,7 +44,6 @@ export class CreateProductComponent implements OnInit, OnChanges {
 
   editarProduct() {
     if (this.produtoSelecionado.id) {
-      console.log('entrou no if')
       this.categoryService.getCategoryById(this.produtoSelecionado.categoryId)
         .subscribe(res => {
           if (res) {
@@ -55,7 +54,6 @@ export class CreateProductComponent implements OnInit, OnChanges {
       this.product = this.produtoSelecionado;
     }
   }
-
 
   selecionouCategoria(event) {
     this.product.categoryId = event;

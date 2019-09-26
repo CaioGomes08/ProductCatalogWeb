@@ -50,7 +50,7 @@
           <div class="form-group">
             <label for="exampleFormControlFile1" style="font-weight: bold">Imagem</label>
             <input type="file" #inputFile class="form-control-file" accept="image/*" (change)="selecionouImagem($event)">
-            <img  *ngIf="imagemSelecionada" [src]="imagemSelecionada" alt="Imagem do produto">
+            <img class="image-demo" *ngIf="imagemSelecionada" [src]="imagemSelecionada" alt="Imagem do produto">
           </div>
         </form>
       </div>
