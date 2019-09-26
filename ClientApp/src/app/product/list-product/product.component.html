@@ -48,8 +48,9 @@
               <div class="ui-g-10 ui-sm-6"><b>{{ prod.price | currency:'BRL' }}</b></div>
             </div>
           </div>
-          <div class="ui-g-12 ui-md-1 search-icon">
-            <button pButton type="button" icon="pi pi-search" data-toggle="modal" data-target="#ProductModal" (click)="editar(prod.id)"></button>
+          <div class="ui-g-12 ui-md-1 search-icon" style="display: flex; flex-direction: column; justify-content: space-around;">
+            <button pButton type="button" icon="pi pi-pencil" data-toggle="modal" data-target="#ProductModal" (click)="editar(prod.id)"></button>
+            <button pButton type="button" class="ui-button-danger" icon="pi pi-trash"  (click)="excluir(prod.id)"></button>
           </div>
         </div>
       </ng-template>

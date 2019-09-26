@@ -5,6 +5,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { ProductService } from '../../../services/product.service';
 import { Product, ProductViewModel } from '../../../model/product.model';
 import { finalize } from 'rxjs/operators';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-product',
@@ -52,6 +53,34 @@ export class ProductComponent implements OnInit {
             console.log(this.produtoSelecionado);
           }
         });
+  }
+
+  excluir(id: number) {
+    Swal.fire({
+      title: 'Tem certeza?',
+      text: 'Você irá remover esse produto',
+      type: 'warning',
+      showCancelButton: true,
+      cancelButtonText: 'Cancelar',
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Sim, excluir!'
+    }).then((result) => {
+      if (result.value) {
+        this.productService.deleteProduct(id)
+          .subscribe(res => {
+            if (res.success) {
+              console.log(res.message);
+              Swal.fire(
+                'Excluido!',
+                res.message,
+                'success'
+              );
+              this.getProducts();
+            }
+          });
+      }
+    });
   }
 
 }

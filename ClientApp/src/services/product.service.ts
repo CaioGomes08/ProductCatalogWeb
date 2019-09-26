@@ -41,4 +41,13 @@ export class ProductService {
         })
       );
   }
+
+  public deleteProduct(id: number): Observable<ResultViewModel> {
+    return this.http.delete(`${environment.storeApi}/product/${id}`)
+      .pipe(
+        map(response => {
+          return response.json();
+        })
+      );
+  }
 }
