@@ -17,6 +17,6 @@ export class LoginComponent implements OnInit {
   user: User = new User();
 
   logar(){
-    console.log(this.user);
+    console.log(this.user); 
   }
 }
