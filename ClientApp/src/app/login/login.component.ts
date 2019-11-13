@@ -16,7 +16,7 @@ export class LoginComponent implements OnInit {
   // tslint:disable-next-line: member-ordering
   user: User = new User();
 
-  logar(){
-    console.log(this.user); 
+  logar() {
+    console.log(this.user);
   }
 }
