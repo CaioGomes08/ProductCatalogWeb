@@ -17,6 +17,7 @@ import { HomeComponent } from './home/home.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ComponentsModule } from './components/components.module';
 import { PipeModule } from '../pipes/pipe.module';
+import { LoginComponent } from './login/login.component';
 
 
 
@@ -26,6 +27,7 @@ import { PipeModule } from '../pipes/pipe.module';
     AppComponent,
     NavMenuComponent,
     HomeComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -41,7 +43,8 @@ import { PipeModule } from '../pipes/pipe.module';
     InputTextModule,
     PipeModule,
     RouterModule.forRoot([
-      { path: '', component: HomeComponent, pathMatch: 'full' },
+      { path: '', component: LoginComponent, pathMatch: 'full' },
+      { path: 'home', component: HomeComponent, pathMatch: 'full'},
       { path: 'category', loadChildren: './category/category.module#CategoryModule' },
       { path: 'product', loadChildren: './product/product.module#ProductModule'},
       { path: 'user', loadChildren: './user/user.module#UserModule'}
