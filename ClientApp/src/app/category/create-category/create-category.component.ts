@@ -46,9 +46,11 @@ export class CreateCategoryComponent implements OnInit, OnChanges {
   }
 
   inicializarComponent() {
-    this.category = new Category();
-    this.categorySelecionada = undefined;
-    this.errors = undefined;
+    setTimeout(() => {
+      this.category = new Category();
+      this.categorySelecionada = undefined;
+      this.errors = undefined;
+    }, 500);
   }
 
   cadastrar() {
