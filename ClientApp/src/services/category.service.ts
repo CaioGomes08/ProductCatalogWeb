@@ -3,61 +3,65 @@ import { Injectable, EventEmitter } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { Http } from '@angular/http';
 import { Category } from '../model/category.model';
 import { ResultViewModel } from '../model/resultViewModel.model';
-import { HttpParams } from '@angular/common/http';
+import {  HttpClient, HttpHeaders } from '@angular/common/http';
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class CategoryService {
 
-  constructor(private http: Http) { }
+  constructor(private httpClient: HttpClient) { }
 
   cadastrou: EventEmitter<boolean> = new EventEmitter<boolean>();
 
-  public getCategories(): Observable<Category[]> {
-    return this.http.get(`${environment.storeApi}/category`)
+  public headers = new HttpHeaders({
+    'Content-Type': 'application/json'
+  });
+
+  public getCategories() {
+    return this.httpClient.get(`${environment.storeApi}/category`, {headers: this.headers})
       .pipe(
         map(response => {
-          return response.json();
+          return response;
         })
       );
   }
 
-  public getCategoryById(id: number): Observable<Category> {
-    return this.http.get(`${environment.storeApi}/category/${id}`)
+  public getCategoryById(id: number) {
+    return this.httpClient.get(`${environment.storeApi}/category/${id}`, {headers: this.headers})
       .pipe(
         map(response => {
-          return response.json();
+          return response;
         })
       );
   }
 
-  public createCategory(category: Category): Observable<ResultViewModel> {
-    return this.http.post(`${environment.storeApi}/category`, category)
+  public createCategory(category: Category) {
+    return this.httpClient.post(`${environment.storeApi}/category`, category , {headers: this.headers})
       .pipe(
         map(response => {
-          return response.json();
+          return response;
         })
       );
   }
 
-  public updateCategory(category: Category): Observable<ResultViewModel> {
-    return this.http.put(`${environment.storeApi}/category`, category)
+  public updateCategory(category: Category) {
+    return this.httpClient.put(`${environment.storeApi}/category`, category , {headers: this.headers})
       .pipe(
         map(response => {
-          return response.json();
+          return response;
         })
       );
   }
 
-  public deleteCategory(id: number): Observable<ResultViewModel> {
-    return this.http.delete(`${environment.storeApi}/category/${id}`)
+  public deleteCategory(id: number) {
+    return this.httpClient.delete(`${environment.storeApi}/category/${id}` , {headers: this.headers})
       .pipe(
         map(response => {
-          return response.json();
+          return response;
         })
       );
   }

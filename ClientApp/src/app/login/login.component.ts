@@ -16,6 +16,7 @@ export class LoginComponent implements OnInit {
   invalidLogin: boolean;
 
   ngOnInit() {
+    
   }
 
   // tslint:disable-next-line: member-ordering
@@ -31,9 +32,5 @@ export class LoginComponent implements OnInit {
         }, err => {
           this.invalidLogin = true;
         });
-  }
-
-  logout(){
-    localStorage.removeItem('token');
   }
 }

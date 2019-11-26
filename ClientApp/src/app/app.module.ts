@@ -5,6 +5,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 import { ScrollingModule } from '@angular/cdk/scrolling';
 import { HttpModule } from '@angular/http';
+import { JwtModule } from '@auth0/angular-jwt';
 
 import { DataViewModule } from 'primeng/dataview';
 import { PanelModule } from 'primeng/panel';
@@ -18,8 +19,11 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ComponentsModule } from './components/components.module';
 import { PipeModule } from '../pipes/pipe.module';
 import { LoginComponent } from './login/login.component';
+import { AuthGuard } from './guards/auth-guard.service';
 
-
+export function tokenGetter() {
+  return localStorage.getItem('token');
+}
 
 
 @NgModule({
@@ -44,13 +48,20 @@ import { LoginComponent } from './login/login.component';
     PipeModule,
     RouterModule.forRoot([
       { path: '', component: LoginComponent, pathMatch: 'full' },
-      { path: 'home', component: HomeComponent, pathMatch: 'full'},
-      { path: 'category', loadChildren: './category/category.module#CategoryModule' },
-      { path: 'product', loadChildren: './product/product.module#ProductModule'},
-      { path: 'user', loadChildren: './user/user.module#UserModule'}
-    ])
+      { path: 'home', component: HomeComponent, canActivate:[ AuthGuard ]},
+      { path: 'category', loadChildren: './category/category.module#CategoryModule', canActivate:[ AuthGuard ] },
+      { path: 'product', loadChildren: './product/product.module#ProductModule', canActivate:[ AuthGuard ]},
+      { path: 'user', loadChildren: './user/user.module#UserModule', canActivate:[ AuthGuard ]}
+    ]),
+    JwtModule.forRoot({
+      config: {
+        tokenGetter: tokenGetter,
+        whitelistedDomains: ['localhost:5000'],
+        blacklistedRoutes:[]
+      }
+    })
   ],
-  providers: [],
+  providers: [AuthGuard],
   bootstrap: [AppComponent],
   exports: [
     DataViewModule,
