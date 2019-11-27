@@ -4,6 +4,7 @@ import { Category } from 'src/model/category.model';
 import { CategoryService } from 'src/services/category.service';
 import { ToastrService } from 'ngx-toastr';
 import { finalize } from 'rxjs/operators';
+import { HttpErrorResponse } from '@angular/common/http';
 
 
 
@@ -58,27 +59,32 @@ export class CreateCategoryComponent implements OnInit, OnChanges {
     this.categoryService.createCategory(this.category)
       .pipe(finalize(() => this.cadastrando = false))
       .subscribe(result => {
-        if (result.success) {
+        if (result) {
           this.categoryService.cadastrou.emit(true);
           Swal.fire({
             type: 'success',
             title: 'Sucesso!',
-            text: result.message,
+            text: 'Sucesso ao cadastrar categoria!',
             showConfirmButton: false,
             timer: 1500
           }).then(_ => {
             this.inicializarComponent();
             this.closeModal();
-          })
-        } else {
-          this.errors = result.data;
-          this.toastrService.error(result.message, 'Erro', {
-            progressBar: true,
-            timeOut: 3000
           });
         }
-
-      })
+      }, (error: HttpErrorResponse) => {
+        if (error.status === 403) {
+          Swal.fire({
+            type: 'warning',
+            title: 'Aviso!',
+            text: 'Você não tem permissão para executar essa ação!',
+            showConfirmButton: false,
+            timer: 2000
+          }).then(_ => {
+            this.closeModal();
+          });
+        }
+      });
   }
 
   editar() {
