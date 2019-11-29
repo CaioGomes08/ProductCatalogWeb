@@ -18,7 +18,7 @@ export class ProductComponent implements OnInit {
     private sanitizer: DomSanitizer) { }
   scrollItems: number[] = [];
 
-  produtos: ProductViewModel[] = [];
+  produtos: ProductViewModel;
   produtoSelecionado: Product = new Product();
 
   showSpinner = false;
