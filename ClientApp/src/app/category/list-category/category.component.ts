@@ -44,8 +44,7 @@ export class CategoryComponent implements OnInit {
       if (result.value) {
         this.categoryService.deleteCategory(id)
           .subscribe(res => {
-            if (res.success) {
-              console.log(res.message);
+            if (res) {
               Swal.fire(
                 'Excluido!',
                 res.message,

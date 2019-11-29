@@ -22,7 +22,7 @@ export class CategoryService {
   });
 
   public getCategories() {
-    return this.httpClient.get(`${environment.storeApi}/category`, {headers: this.headers})
+    return this.httpClient.get<Category[]>(`${environment.storeApi}/category`, {headers: this.headers})
       .pipe(
         map(response => {
           return response;
@@ -31,7 +31,7 @@ export class CategoryService {
   }
 
   public getCategoryById(id: number) {
-    return this.httpClient.get(`${environment.storeApi}/category/${id}`, {headers: this.headers})
+    return this.httpClient.get<Category>(`${environment.storeApi}/category/${id}`, {headers: this.headers})
       .pipe(
         map(response => {
           return response;
@@ -40,7 +40,7 @@ export class CategoryService {
   }
 
   public createCategory(category: Category) {
-    return this.httpClient.post(`${environment.storeApi}/category`, category , {headers: this.headers})
+    return this.httpClient.post<ResultViewModel>(`${environment.storeApi}/category`, category , {headers: this.headers})
       .pipe(
         map(response => {
           return response;
@@ -49,7 +49,7 @@ export class CategoryService {
   }
 
   public updateCategory(category: Category) {
-    return this.httpClient.put(`${environment.storeApi}/category`, category , {headers: this.headers})
+    return this.httpClient.put<ResultViewModel>(`${environment.storeApi}/category`, category , {headers: this.headers})
       .pipe(
         map(response => {
           return response;
@@ -58,7 +58,7 @@ export class CategoryService {
   }
 
   public deleteCategory(id: number) {
-    return this.httpClient.delete(`${environment.storeApi}/category/${id}` , {headers: this.headers})
+    return this.httpClient.delete<ResultViewModel>(`${environment.storeApi}/category/${id}` , {headers: this.headers})
       .pipe(
         map(response => {
           return response;

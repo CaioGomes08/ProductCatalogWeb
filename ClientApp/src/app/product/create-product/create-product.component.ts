@@ -47,7 +47,7 @@ export class CreateProductComponent implements OnInit, OnChanges {
       this.categoryService.getCategoryById(this.produtoSelecionado.categoryId)
         .subscribe(res => {
           if (res) {
-            this.product.categoryId = res.id;
+            // this.product.categoryId = res.id;
           }
         });
       this.imagemSelecionada = this.sanitizer.bypassSecurityTrustResourceUrl('data:image/*;base64,' + this.produtoSelecionado.image);

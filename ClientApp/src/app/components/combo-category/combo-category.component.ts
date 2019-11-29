@@ -33,7 +33,7 @@ export class ComboCategoryComponent implements OnInit {
   getCategories() {
     this.categoryService.getCategories()
         .subscribe((result) => {
-          this.categories = result;
+          // this.categories = result;
         });
   }
 
