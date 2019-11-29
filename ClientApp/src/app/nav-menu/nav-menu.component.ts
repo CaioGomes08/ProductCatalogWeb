@@ -29,6 +29,7 @@ export class NavMenuComponent implements OnInit {
   }
 
   logout() {
+    this.authGuardService.usuarioLogado.emit(false);
     localStorage.removeItem('token');
     this.router.navigate(['/']);
   }
