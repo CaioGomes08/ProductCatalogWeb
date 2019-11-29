@@ -17,27 +17,23 @@ export class CategoryService {
 
   cadastrou: EventEmitter<boolean> = new EventEmitter<boolean>();
 
-  public headers = new HttpHeaders({
-    'Content-Type': 'application/json'
-  });
-
   public getCategories() {
-    return this.httpClient.get<Category[]>(`${environment.storeApi}/category`, { headers: this.headers });
+    return this.httpClient.get<Category[]>(`${environment.storeApi}/category`);
   }
 
   public getCategoryById(id: number) {
-    return this.httpClient.get<Category>(`${environment.storeApi}/category/${id}`, { headers: this.headers });
+    return this.httpClient.get<Category>(`${environment.storeApi}/category/${id}`);
   }
 
   public createCategory(category: Category) {
-    return this.httpClient.post<ResultViewModel>(`${environment.storeApi}/category`, category, { headers: this.headers });
+    return this.httpClient.post<ResultViewModel>(`${environment.storeApi}/category`, category);
   }
 
   public updateCategory(category: Category) {
-    return this.httpClient.put<ResultViewModel>(`${environment.storeApi}/category`, category, { headers: this.headers });
+    return this.httpClient.put<ResultViewModel>(`${environment.storeApi}/category`, category);
   }
 
   public deleteCategory(id: number) {
-    return this.httpClient.delete<ResultViewModel>(`${environment.storeApi}/category/${id}`, { headers: this.headers });
+    return this.httpClient.delete<ResultViewModel>(`${environment.storeApi}/category/${id}`);
   }
 }
