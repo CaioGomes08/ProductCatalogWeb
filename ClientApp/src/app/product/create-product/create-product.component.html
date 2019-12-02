@@ -65,14 +65,14 @@
         <button type="button" class="btn btn-danger" (click)="inicializarComponent()"
           data-dismiss="modal">Cancelar</button>
        
-        <button  class="btn btn-success" type="button" [disabled]="cadastrando"
+        <button *ngIf="!produtoSelecionado?.id" class="btn btn-success" type="button" [disabled]="cadastrando"
           (click)="cadastrar()">
           <span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true" [hidden]="!cadastrando"></span>
           <label style="margin: 0" [hidden]="!cadastrando">&nbsp; Cadastrando...</label>
           <label style="margin: 0" [hidden]="cadastrando">Cadastrar</label>
         </button>
         
-        <button  class="btn btn-info" type="button" [disabled]="cadastrando"
+        <button *ngIf="produtoSelecionado?.id" class="btn btn-info" type="button" [disabled]="cadastrando"
           (click)="editar()">
           <span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true" [hidden]="!cadastrando"></span>
           <label style="margin: 0" [hidden]="!cadastrando">&nbsp; Editando...</label>

@@ -18,7 +18,7 @@ export class ProductComponent implements OnInit {
     private sanitizer: DomSanitizer) { }
   scrollItems: number[] = [];
 
-  produtos: ProductViewModel;
+  produtos: ProductViewModel = new ProductViewModel();
   produtoSelecionado: Product = new Product();
 
   showSpinner = false;
@@ -47,12 +47,11 @@ export class ProductComponent implements OnInit {
 
   editar(id: number) {
     this.productService.getProductById(id)
-        .subscribe(result => {
-          if (result) {
-            this.produtoSelecionado = result;
-            console.log(this.produtoSelecionado);
-          }
-        });
+      .subscribe(result => {
+        if (result) {
+          this.produtoSelecionado = result;
+        }
+      });
   }
 
   excluir(id: number) {
@@ -70,7 +69,6 @@ export class ProductComponent implements OnInit {
         this.productService.deleteProduct(id)
           .subscribe(res => {
             if (res.success) {
-              console.log(res.message);
               Swal.fire(
                 'Excluido!',
                 res.message,

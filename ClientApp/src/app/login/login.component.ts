@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { User } from 'src/model/user.model';
 import { AuthenticationService } from 'src/services/authentication.service';
 import { Router } from '@angular/router';
+import {  ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-login',
@@ -11,7 +12,8 @@ import { Router } from '@angular/router';
 export class LoginComponent implements OnInit {
 
   constructor(private authService: AuthenticationService,
-              private router: Router) { }
+              private router: Router,
+              private toastr: ToastrService) { }
 
   invalidLogin: boolean;
 
@@ -30,6 +32,8 @@ export class LoginComponent implements OnInit {
           this.invalidLogin = false;
           this.router.navigate(['/home']);
         }, err => {
+          console.log(err._body);
+          this.toastr.error(err._body, 'Erro ao logar', {progressBar: true});
           this.invalidLogin = true;
         });
   }

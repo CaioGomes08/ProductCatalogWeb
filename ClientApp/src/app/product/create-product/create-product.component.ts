@@ -47,7 +47,7 @@ export class CreateProductComponent implements OnInit, OnChanges {
       this.categoryService.getCategoryById(this.produtoSelecionado.categoryId)
         .subscribe(res => {
           if (res) {
-            // this.product.categoryId = res.id;
+            this.product.categoryId = res.id;
           }
         });
       this.imagemSelecionada = this.sanitizer.bypassSecurityTrustResourceUrl('data:image/*;base64,' + this.produtoSelecionado.image);
@@ -89,6 +89,7 @@ export class CreateProductComponent implements OnInit, OnChanges {
   }
 
   cadastrar() {
+    this.cadastrando = true;
     this.productService.createProduct(this.product)
       .subscribe((result) => {
         if (result.success) {
@@ -100,6 +101,8 @@ export class CreateProductComponent implements OnInit, OnChanges {
             showConfirmButton: false,
             timer: 1500
           });
+          this.cadastrando = false;
+          this.closeModal();
         } else {
           this.errors = result.data;
           Swal.fire({
@@ -109,13 +112,38 @@ export class CreateProductComponent implements OnInit, OnChanges {
             showConfirmButton: false,
             timer: 1500
           });
+          this.cadastrando = false;
         }
       });
-    this.closeModal();
   }
 
   editar() {
-
+    this.cadastrando = true;
+    this.productService.updateProduct(this.product)
+      .subscribe((result) => {
+        if (result.success) {
+          this.productService.cadastrou.emit(true);
+          Swal.fire({
+            type: 'success',
+            title: 'Sucesso',
+            text: result.message,
+            showConfirmButton: false,
+            timer: 1500
+          });
+          this.cadastrando = false;
+          this.closeModal();
+        } else {
+          this.errors = result.data;
+          Swal.fire({
+            type: 'error',
+            title: 'Erro',
+            text: result.message,
+            showConfirmButton: false,
+            timer: 1500
+          });
+          this.cadastrando = false;
+        }
+      });
   }
 
   closeModal() {

@@ -30,4 +30,8 @@ export class ProductService {
   public deleteProduct(id: number) {
     return this.httpClient.delete<ResultViewModel>(`${environment.storeApi}/product/${id}`)
   }
+
+  public updateProduct(product: Product){
+    return this.httpClient.put<ResultViewModel>(`${environment.storeApi}/product`, product);
+  }
 }
