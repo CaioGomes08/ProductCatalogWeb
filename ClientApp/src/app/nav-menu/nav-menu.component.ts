@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { browser } from 'protractor';
 import { Router } from '@angular/router';
 import { AuthGuard } from '../guards/auth-guard.service';
+import { User } from 'src/model/user.model';
 
 @Component({
   selector: 'app-nav-menu',
@@ -11,6 +12,7 @@ import { AuthGuard } from '../guards/auth-guard.service';
 export class NavMenuComponent implements OnInit {
   isExpanded = false;
   userLogged = false;
+  usuario: User = new User();
   constructor(private router: Router, private authGuardService: AuthGuard) { }
 
   collapse() {
@@ -18,10 +20,11 @@ export class NavMenuComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.usuario = JSON.parse(localStorage.getItem('usuario'));
     this.authGuardService.usuarioLogado
-    .subscribe(value => {
-      this.userLogged = value;
-    });
+      .subscribe(value => {
+        this.userLogged = value;
+      });
   }
 
   toggle() {
@@ -31,6 +34,7 @@ export class NavMenuComponent implements OnInit {
   logout() {
     this.authGuardService.usuarioLogado.emit(false);
     localStorage.removeItem('token');
+    localStorage.removeItem('usuario');
     this.router.navigate(['/']);
   }
 }
