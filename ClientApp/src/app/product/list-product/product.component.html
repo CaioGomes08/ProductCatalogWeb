@@ -15,7 +15,7 @@
     </div>
   </ng-container>
   <ng-container *ngIf="produtos != null && !showSpinner">
-    <p-dataView #dv [value]="produtos" emptyMessage="Nenhum produto encontrado !" [paginator]="true" [rows]="5"
+    <p-dataView #dv [value]="produtos" emptyMessage="Nenhum produto encontrado!" [paginator]="true" [rows]="5"
       filterBy="title">
       <p-header>
         <div class="ui-helper-clearfix">

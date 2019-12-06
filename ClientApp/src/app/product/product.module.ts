@@ -38,12 +38,7 @@ import { CategoryService } from 'src/services/category.service';
 
   ],
   providers: [
-    ProductService,
-    {
-      provide: NG_VALUE_ACCESSOR,
-      multi: true,
-      useExisting: forwardRef(() => CreateProductComponent),
-    }
+    ProductService
   ]
 })
 export class ProductModule { }

@@ -6,5 +6,54 @@
 </div>
 
 <div class="container">
-  <spinner [showSpinner]="true"></spinner>
+  <spinner [showSpinner]="showSpinner"></spinner>
+  <ng-container *ngIf="usuarios == null">
+    <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
+      <div class="alert alert-danger" role="alert">
+        Nenhum usuário encontrado!
+      </div>
+    </div>
+  </ng-container>
+  <ng-container *ngIf="usuarios != null && !showSpinner">
+    <p-dataView #dv [value]="usuarios" emptyMessage="Nenhum usuário encontrado!" [paginator]="true" [rows]="5"
+      filterBy="nome">
+      <p-header>
+        <div class="ui-helper-clearfix">
+          <div class="ui-g">
+            <div class="ui-g-12 ui-md-6 filter-container">
+              <div style="position:relative">
+                <input type="text" pInputText placeholder="Pesquisar" (keyup)="dv.filter($event.target.value)">
+              </div>
+            </div>
+            <div class="ui-g-12 ui-md-6" style="text-align:right">
+              <p-dataViewLayoutOptions></p-dataViewLayoutOptions>
+            </div>
+          </div>
+        </div>
+      </p-header>
+      <ng-template let-user pTemplate="listItem">
+        <div class="ui-g" style="padding: 2em;border-bottom: 1px solid #d9d9d9">
+          <div class="ui-g-12 ui-md-8">
+            <div class="ui-g">
+              <div class="ui-g-2 ui-sm-6">Nome: </div>
+              <div class="ui-g-10 ui-sm-6"><b>{{ user.nome }}</b></div>
+
+              <div class="ui-g-2 ui-sm-6">Sobrenome: </div>
+              <div class="ui-g-10 ui-sm-6"><b>{{ user.sobrenome }}</b></div>
+
+              <div class="ui-g-2 ui-sm-6">E-mail: </div>
+              <div class="ui-g-10 ui-sm-6"><b>{{ user.email }}</b></div>
+            </div>
+          </div>
+          <div class="ui-g-12 ui-md-1 search-icon"
+            style="display: flex; flex-direction: column; justify-content: space-around;">
+            <button pButton type="button" icon="pi pi-pencil" data-toggle="modal" data-target="#ProductModal"
+              (click)="editar(user.id)"></button>
+            <button pButton type="button" class="ui-button-danger" icon="pi pi-trash"
+              (click)="excluir(user.id)"></button>
+          </div>
+        </div>
+      </ng-template>
+    </p-dataView>
+  </ng-container>
 </div>

@@ -14,8 +14,7 @@ import Swal from 'sweetalert2';
 })
 export class ProductComponent implements OnInit {
 
-  constructor(private productService: ProductService,
-    private sanitizer: DomSanitizer) { }
+  constructor(private productService: ProductService) { }
   scrollItems: number[] = [];
 
   produtos: ProductViewModel = new ProductViewModel();
@@ -39,6 +38,7 @@ export class ProductComponent implements OnInit {
       .pipe(finalize(() => this.showSpinner = false))
       .subscribe(res => {
         this.produtos = res;
+        console.log(this.produtos)
       }, (error: HttpErrorResponse) => {
         console.error(error);
         this.produtos = null;
