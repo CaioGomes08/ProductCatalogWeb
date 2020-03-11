@@ -19,7 +19,9 @@ export class LoginComponent implements OnInit {
   invalidLogin: boolean;
 
   ngOnInit() {
-
+    if(localStorage.getItem('token')){
+      this.router.navigate(['/home']);
+    }
   }
 
   // tslint:disable-next-line: member-ordering
