@@ -49,9 +49,9 @@ export function tokenGetter() {
     RouterModule.forRoot([
       { path: '', component: LoginComponent, pathMatch: 'full' },
       { path: 'home', component: HomeComponent, canActivate:[ AuthGuard ]},
-      { path: 'category', loadChildren: './category/category.module#CategoryModule', canActivate:[ AuthGuard ] },
-      { path: 'product', loadChildren: './product/product.module#ProductModule', canActivate:[ AuthGuard ]},
-      { path: 'user', loadChildren: './user/user.module#UserModule', canActivate:[ AuthGuard ]}
+      { path: 'category', loadChildren: () => import('./category/category.module').then(m => m.CategoryModule), canActivate:[ AuthGuard ] },
+      { path: 'product', loadChildren: () => import('./product/product.module').then(m => m.ProductModule), canActivate:[ AuthGuard ]},
+      { path: 'user', loadChildren: () => import('./user/user.module').then(m => m.UserModule), canActivate:[ AuthGuard ]}
     ]),
     JwtModule.forRoot({
       config: {
