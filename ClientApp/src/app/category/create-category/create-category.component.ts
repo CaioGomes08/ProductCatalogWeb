@@ -27,8 +27,7 @@ export class CreateCategoryComponent implements OnInit, OnChanges {
 
     @Input() categorySelecionada: Category = new Category();
 
-    @ViewChild('btnClick') btnClick: ElementRef;
-
+    @ViewChild('btnClick', {static: false}) btnClick: ElementRef;
 
     ngOnInit() {
 
@@ -62,7 +61,7 @@ export class CreateCategoryComponent implements OnInit, OnChanges {
                 if (result.success) {
                     this.categoryService.cadastrou.emit(true);
                     Swal.fire({
-                        type: 'success',
+                        icon: 'success',
                         title: 'Sucesso!',
                         text: 'Sucesso ao cadastrar categoria!',
                         showConfirmButton: false,
@@ -77,7 +76,7 @@ export class CreateCategoryComponent implements OnInit, OnChanges {
             }, (error: HttpErrorResponse) => {
                 if (error.status === 403) {
                     Swal.fire({
-                        type: 'warning',
+                        icon: 'warning',
                         title: 'Aviso!',
                         text: 'Você não tem permissão para executar essa ação!',
                         showConfirmButton: false,
@@ -97,7 +96,7 @@ export class CreateCategoryComponent implements OnInit, OnChanges {
                 if (result.success) {
                     this.categoryService.cadastrou.emit(true);
                     Swal.fire({
-                        type: 'success',
+                        icon: 'success',
                         title: 'Sucesso!',
                         text: 'Categoria alterada com sucesso!',
                         showConfirmButton: false,
@@ -112,7 +111,7 @@ export class CreateCategoryComponent implements OnInit, OnChanges {
             }, (error: HttpErrorResponse) => {
                 if (error.status === 403) {
                     Swal.fire({
-                        type: 'warning',
+                        icon: 'warning',
                         title: 'Aviso!',
                         text: 'Você não tem permissão para executar essa ação!',
                         showConfirmButton: false,

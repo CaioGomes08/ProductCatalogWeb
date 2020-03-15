@@ -58,7 +58,7 @@ export class ProductComponent implements OnInit {
     Swal.fire({
       title: 'Tem certeza?',
       text: 'Você irá remover esse produto',
-      type: 'warning',
+      icon: 'warning',
       showCancelButton: true,
       cancelButtonText: 'Cancelar',
       confirmButtonColor: '#3085d6',
