@@ -34,7 +34,7 @@ export class CategoryComponent implements OnInit {
     Swal.fire({
       title: 'Tem certeza?',
       text: 'Você irá remover essa categoria',
-      type: 'warning',
+      icon: 'warning',
       showCancelButton: true,
       cancelButtonText: 'Cancelar',
       confirmButtonColor: '#3085d6',

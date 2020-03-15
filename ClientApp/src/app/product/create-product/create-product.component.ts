@@ -95,7 +95,7 @@ export class CreateProductComponent implements OnInit, OnChanges {
         if (result.success) {
           this.productService.cadastrou.emit(true);
           Swal.fire({
-            type: 'success',
+            icon: 'success',
             title: 'Sucesso',
             text: result.message,
             showConfirmButton: false,
@@ -106,7 +106,7 @@ export class CreateProductComponent implements OnInit, OnChanges {
         } else {
           this.errors = result.data;
           Swal.fire({
-            type: 'error',
+            icon: 'error',
             title: 'Erro',
             text: result.message,
             showConfirmButton: false,
@@ -124,7 +124,7 @@ export class CreateProductComponent implements OnInit, OnChanges {
         if (result.success) {
           this.productService.cadastrou.emit(true);
           Swal.fire({
-            type: 'success',
+            icon: 'success',
             title: 'Sucesso',
             text: result.message,
             showConfirmButton: false,
@@ -135,7 +135,7 @@ export class CreateProductComponent implements OnInit, OnChanges {
         } else {
           this.errors = result.data;
           Swal.fire({
-            type: 'error',
+            icon: 'error',
             title: 'Erro',
             text: result.message,
             showConfirmButton: false,

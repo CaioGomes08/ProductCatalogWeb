@@ -34,7 +34,7 @@
     "primeng": "^9.0.0",
     "rxjs": "6.5.4",
     "sweetalert2": "^9.10.0",
-    "tslib": "^1.10.0",
+    "tslib": "^1.11.1",
     "zone.js": "~0.10.2"
   },
   "devDependencies": {
@@ -44,7 +44,8 @@
     "@angular/language-service": "^9.0.6",
     "@types/jasmine": "~3.5.9",
     "@types/jasminewd2": "~2.0.8",
-    "@types/node": "^12.11.1",
+    "@types/node": "^12.12.30",
+    "babel-plugin-lodash-template-precompile": "^1.0.0",
     "codelyzer": "^5.1.2",
     "jasmine-core": "~3.5.0",
     "jasmine-spec-reporter": "~4.2.1",
@@ -53,7 +54,7 @@
     "karma-coverage-istanbul-reporter": "~2.1.1",
     "karma-jasmine": "~3.1.1",
     "karma-jasmine-html-reporter": "^1.5.2",
-    "typescript": "3.8.3"
+    "typescript": "~3.7.5"
   },
   "optionalDependencies": {
     "node-sass": "^4.9.3",

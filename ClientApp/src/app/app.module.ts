@@ -4,7 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 import { ScrollingModule } from '@angular/cdk/scrolling';
-import { HttpModule } from '@angular/http';
+// import { HttpModule } from '@angular/http';
 import { JwtModule } from '@auth0/angular-jwt';
 
 import { DataViewModule } from 'primeng/dataview';
@@ -40,7 +40,7 @@ export function tokenGetter() {
     BrowserAnimationsModule,
     ComponentsModule,
     ToastrModule.forRoot(),
-    HttpModule,
+    // HttpModule,
     FormsModule,
     DataViewModule,
     PanelModule,
