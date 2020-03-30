@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { browser } from 'protractor';
 import { Router } from '@angular/router';
 import { AuthGuard } from '../guards/auth-guard.service';
 import { User } from 'src/model/user.model';
