@@ -1,6 +1,6 @@
-import { Injectable, EventEmitter } from "@angular/core";
-import { CanActivate, Router } from "@angular/router";
-import { JwtHelperService } from "@auth0/angular-jwt";
+import { Injectable, EventEmitter } from '@angular/core';
+import { CanActivate, Router } from '@angular/router';
+import { JwtHelperService } from '@auth0/angular-jwt';
 
 @Injectable()
 export class AuthGuard implements CanActivate {
